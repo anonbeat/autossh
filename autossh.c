@@ -409,15 +409,7 @@ main(int argc, char **argv)
 				continue;
 			}
 		}
- 		if (wp && env_port && !done_fwds) {
-			add_arg("-L");
-			add_arg(wmbuf);
-			if (!echop) {
-				add_arg("-R");
-				add_arg(rmbuf);
-			}
-			done_fwds = 1;
-		} else if (!sawargstop && argv[i][0] == '-' && argv[i][1] == 'M') {
+		if (!sawargstop && argv[i][0] == '-' && argv[i][1] == 'M') {
 			if (argv[i][2] == '\0')
 				i++;
 			if (wp && !done_fwds) {
@@ -435,6 +427,16 @@ main(int argc, char **argv)
 		strip_arg(argv[i], 'f', OPTION_STRING);
 		add_arg(argv[i]);
 	}
+	
+	if (wp && env_port && !done_fwds) {
+		add_arg("-L");
+		add_arg(wmbuf);
+		if (!echop) {
+			add_arg("-R");
+			add_arg(rmbuf);
+		}
+		done_fwds = 1;
+	}	
 
 	if (runasdaemon) {
 		if (daemon(0, 0) == -1) {
