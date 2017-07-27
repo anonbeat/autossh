@@ -1,4 +1,17 @@
 
+To use it with sshpass you must set some environment variables 
+
+export SSHPASS='YourSecretPassword'
+export AUTOSSH_PATH='sshpass'
+export AUTOSSH_LOGFILE=/var/log/autossh/your_connection_log_file_path
+export AUTOSSH_PORT=45601
+export AUTOSSH_DEBUG=1
+autossh -- -e ssh -N -D 127.0.0.1:45600 username@hostname
+
+
+
+
+
 autossh Version 1.4
 -------------------
 
